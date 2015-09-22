@@ -24,6 +24,9 @@ angular.module('ngCordova.plugins.fileTransfer', [])
 
         q.promise.abort = function () {
           ft.abort();
+          //FIX: reject promise if canceled
+          //TODO: use cordova file error
+          q.reject('ABORT_ERR');
         };
 
         ft.download(uri, filePath, q.resolve, q.reject, trustAllHosts, options);
